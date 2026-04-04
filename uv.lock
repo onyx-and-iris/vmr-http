@@ -1154,26 +1154,28 @@ name = "vmr-http"
 version = "0.2.0"
 source = { editable = "." }
 dependencies = [
-    { name = "fastapi", extra = ["standard"] },
+    { name = "fastapi" },
     { name = "uvicorn" },
     { name = "voicemeeter-api" },
 ]
 
 [package.dev-dependencies]
 dev = [
+    { name = "fastapi", extra = ["standard"] },
     { name = "poethepoet" },
     { name = "ruff" },
 ]
 
 [package.metadata]
 requires-dist = [
-    { name = "fastapi", extras = ["standard"], specifier = ">=0.135.3" },
+    { name = "fastapi", specifier = ">=0.135.3" },
     { name = "uvicorn", specifier = ">=0.43.0" },
     { name = "voicemeeter-api", editable = "../voicemeeter-api-python" },
 ]
 
 [package.metadata.requires-dev]
 dev = [
+    { name = "fastapi", extras = ["standard"], specifier = ">=0.135.3" },
     { name = "poethepoet", specifier = ">=0.43.0" },
     { name = "ruff", specifier = ">=0.15.9" },
 ]
