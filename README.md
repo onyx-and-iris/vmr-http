@@ -62,7 +62,7 @@ curl -X 'GET' \
 
 ```console
 curl -X 'GET' \
-  'http://127.0.0.1:8000/bus/mode/4/mode' \
+  'http://127.0.0.1:8000/bus/mode/4' \
   -H 'accept: application/json'
 ```
 
