@@ -1,0 +1,73 @@
+# Voicemeeter HTTP
+
+[![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+
+---
+
+## Install
+
+```console
+pip install vmr-http
+```
+
+## Run
+
+```console
+uvicorn vmr_http.app:app
+```
+
+## Use
+
+*Set multiple Strip parameters at once*
+
+```console
+curl -X 'PUT' \
+  'http://127.0.0.1:8000/strip/0' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "gain": -38.7,
+  "mute": true,
+  "mono": true,
+  "A1": true,
+  "A2": false,
+  "A5": true,
+  "B1": true,
+  "B3": true
+}'
+```
+
+*Set multiple Strip mute*
+
+```console
+curl -X 'PUT' \
+  'http://127.0.0.1:8000/strip/1/mute' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "mute": true
+}'
+```
+
+*Get Bus gain*
+
+```console
+curl -X 'GET' \
+  'http://127.0.0.1:8000/bus/3/gain' \
+  -H 'accept: application/json'
+```
+
+*Get Bus Mode*
+
+```console
+curl -X 'GET' \
+  'http://127.0.0.1:8000/bus/mode/4/mode' \
+  -H 'accept: application/json'
+```
+
+## Documentation
+
+FastAPI [generates automatic docs][auto-docs], visit the link in the startup message when you launch the server.
+
+[auto-docs]: https://fastapi.tiangolo.com/features/#automatic-docs
