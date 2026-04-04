@@ -38,7 +38,7 @@ curl -X 'PUT' \
 }'
 ```
 
-*Set multiple Strip mute*
+*Set Strip mute*
 
 ```console
 curl -X 'PUT' \
