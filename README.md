@@ -21,7 +21,7 @@ uvicorn vmr_http:app
 
 *Set multiple Strip 0 parameters at once*
 
-```console
+```bash
 curl -X 'PATCH' \
   'http://127.0.0.1:8000/strip/0' \
   -H 'accept: application/json' \
@@ -40,7 +40,7 @@ curl -X 'PATCH' \
 
 *Set Strip 1 mute*
 
-```console
+```bash
 curl -X 'PATCH' \
   'http://127.0.0.1:8000/strip/1' \
   -H 'accept: application/json' \
@@ -52,7 +52,7 @@ curl -X 'PATCH' \
 
 *Get Bus 3 gain*
 
-```console
+```bash
 curl -X 'GET' \
   'http://127.0.0.1:8000/bus/3/gain' \
   -H 'accept: application/json'
@@ -60,7 +60,7 @@ curl -X 'GET' \
 
 *Get Bus 4 Mode*
 
-```console
+```bash
 curl -X 'GET' \
   'http://127.0.0.1:8000/bus/4/mode' \
   -H 'accept: application/json'
@@ -68,7 +68,7 @@ curl -X 'GET' \
 
 *Set Bus 2 Mode*
 
-```console
+```bash
 curl -X 'PATCH' \
   'http://127.0.0.1:8000/bus/2/mode' \
   -H 'accept: application/json' \
@@ -80,7 +80,7 @@ curl -X 'PATCH' \
 
 *Healthcheck*
 
-```console
+```bash
 curl -X 'GET' \
   'http://127.0.0.1:8000/health' \
   -H 'accept: application/json'
