@@ -140,7 +140,7 @@ curl -X 'GET' \
   -H 'accept: application/json'
 ```
 
-> Set single
+> Set single parameter
 
 ```console
 curl -X 'PATCH' \
