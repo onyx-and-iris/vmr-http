@@ -11,7 +11,7 @@ router = APIRouter()
 router.include_router(stripcomp.router, prefix='/comp', tags=['strip comp'])
 router.include_router(stripgate.router, prefix='/gate', tags=['strip gate'])
 router.include_router(stripdenoiser.router, prefix='/denoiser', tags=['strip denoiser'])
-router.include_router(eq.create_router(parent_router_kind='strip'), prefix='/eq', tags=['strip eq'])
+router.include_router(eq.create_router(eq_kind='strip'), prefix='/eq', tags=['strip eq'])
 
 
 @router.patch('', tags=['strip'])

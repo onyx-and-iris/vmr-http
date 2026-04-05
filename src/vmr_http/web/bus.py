@@ -9,7 +9,7 @@ from . import busmode, eq
 
 router = APIRouter()
 router.include_router(busmode.router, prefix='/mode', tags=['bus mode'])
-router.include_router(eq.create_router(parent_router_kind='bus'), prefix='/eq', tags=['bus eq'])
+router.include_router(eq.create_router(eq_kind='bus'), prefix='/eq', tags=['bus eq'])
 
 
 @router.patch('', tags=['bus'])

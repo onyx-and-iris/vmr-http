@@ -1,18 +1,20 @@
 """Module for equalizer related endpoints, supporting both strip and bus parents via a factory function."""
 
+from typing import Literal
+
 from fastapi import APIRouter, Depends
 
 from vmr_http.dependencies import get_voicemeeter_client
 from vmr_http.models.eq import EQChannelCellParams, EQParams
 
 
-def create_router(parent_router_kind: str) -> APIRouter:
-    """Create an APIRouter for equalizer endpoints, with the specified parent kind ('strip' or 'bus')."""
-    if parent_router_kind not in ('strip', 'bus'):
-        raise ValueError(f'Invalid router kind: {parent_router_kind}')
-    parent_attr = parent_router_kind
+def create_router(eq_kind: str) -> APIRouter:
+    """Create an APIRouter for equalizer endpoints, with the specified kind ('strip' or 'bus')."""
+    if eq_kind not in ('strip', 'bus'):
+        raise ValueError(f'Invalid router kind: {eq_kind}')
+    parent_attr: Literal['strip', 'bus'] = eq_kind
 
-    def get_parent(voicemeeter, index):
+    def target_cls(voicemeeter, index):
         return getattr(voicemeeter, parent_attr)[index]
 
     cell_router = APIRouter()
@@ -27,7 +29,7 @@ def create_router(parent_router_kind: str) -> APIRouter:
         voicemeeter=Depends(get_voicemeeter_client),
     ):
         """Update one or more parameters for the specified eq channel cell."""
-        cell = get_parent(voicemeeter, index).eq.channel[channel_index].cell[cell_index]
+        cell = target_cls(voicemeeter, index).eq.channel[channel_index].cell[cell_index]
         updated = {}
         for key, value in params.model_dump(exclude_unset=True).items():
             setattr(cell, key, value)
@@ -39,35 +41,35 @@ def create_router(parent_router_kind: str) -> APIRouter:
         index: int, channel_index: int, cell_index: int, voicemeeter=Depends(get_voicemeeter_client)
     ):
         """Get the current on status for the specified eq channel cell."""
-        return {'on': get_parent(voicemeeter, index).eq.channel[channel_index].cell[cell_index].on}
+        return {'on': target_cls(voicemeeter, index).eq.channel[channel_index].cell[cell_index].on}
 
     @cell_router.get('/type')
     async def get_eq_channel_cell_type(
         index: int, channel_index: int, cell_index: int, voicemeeter=Depends(get_voicemeeter_client)
     ):
         """Get the current type for the specified eq channel cell."""
-        return {'type': get_parent(voicemeeter, index).eq.channel[channel_index].cell[cell_index].type}
+        return {'type': target_cls(voicemeeter, index).eq.channel[channel_index].cell[cell_index].type}
 
     @cell_router.get('/f')
     async def get_eq_channel_cell_f(
         index: int, channel_index: int, cell_index: int, voicemeeter=Depends(get_voicemeeter_client)
     ):
         """Get the current f value for the specified eq channel cell."""
-        return {'f': get_parent(voicemeeter, index).eq.channel[channel_index].cell[cell_index].f}
+        return {'f': target_cls(voicemeeter, index).eq.channel[channel_index].cell[cell_index].f}
 
     @cell_router.get('/gain')
     async def get_eq_channel_cell_gain(
         index: int, channel_index: int, cell_index: int, voicemeeter=Depends(get_voicemeeter_client)
     ):
         """Get the current gain value for the specified eq channel cell."""
-        return {'gain': get_parent(voicemeeter, index).eq.channel[channel_index].cell[cell_index].gain}
+        return {'gain': target_cls(voicemeeter, index).eq.channel[channel_index].cell[cell_index].gain}
 
     @cell_router.get('/q')
     async def get_eq_channel_cell_q(
         index: int, channel_index: int, cell_index: int, voicemeeter=Depends(get_voicemeeter_client)
     ):
         """Get the current q value for the specified eq channel cell."""
-        return {'q': get_parent(voicemeeter, index).eq.channel[channel_index].cell[cell_index].q}
+        return {'q': target_cls(voicemeeter, index).eq.channel[channel_index].cell[cell_index].q}
 
     router = APIRouter()
     router.include_router(cell_router, prefix='/channel/{channel_index}/cell/{cell_index}')
@@ -76,7 +78,7 @@ def create_router(parent_router_kind: str) -> APIRouter:
     @router.put('')
     async def update_eq_params(index: int, params: EQParams, voicemeeter=Depends(get_voicemeeter_client)):
         """Update one or more equalizer parameters for the specified index."""
-        eq = get_parent(voicemeeter, index).eq
+        eq = target_cls(voicemeeter, index).eq
         updated = {}
         for key, value in params.model_dump(exclude_unset=True).items():
             setattr(eq, key, value)
@@ -86,11 +88,11 @@ def create_router(parent_router_kind: str) -> APIRouter:
     @router.get('/on')
     async def get_eq_on(index: int, voicemeeter=Depends(get_voicemeeter_client)):
         """Get the current equalizer on status for the specified index."""
-        return {'on': get_parent(voicemeeter, index).eq.on}
+        return {'on': target_cls(voicemeeter, index).eq.on}
 
     @router.get('/ab')
     async def get_eq_ab(index: int, voicemeeter=Depends(get_voicemeeter_client)):
         """Get the current equalizer A/B status for the specified index."""
-        return {'ab': get_parent(voicemeeter, index).eq.ab}
+        return {'ab': target_cls(voicemeeter, index).eq.ab}
 
     return router
