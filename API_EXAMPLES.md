@@ -128,6 +128,46 @@ curl -X 'PATCH' \
 }'
 ```
 
+## Bus EQ Channel Cell Router
+
+### */bus/{index}/eq/channel/{channel_index}/cell/{cell_index}*
+
+> Get single parameter
+
+```console
+curl -X 'GET' \
+  'http://127.0.0.1:8000/bus/0/eq/channel/0/cell/0/type' \
+  -H 'accept: application/json'
+```
+
+> Set single
+
+```console
+curl -X 'PATCH' \
+  'http://127.0.0.1:8000/bus/0/eq/channel/0/cell/0' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "q": 9.5
+}'
+```
+
+> Set multiple parameters
+
+```console
+curl -X 'PATCH' \
+  'http://127.0.0.1:8000/bus/0/eq/channel/0/cell/0' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "on": true,
+  "type": 4,
+  "f": 538.2,
+  "gain": -0.6,
+  "q": 9.5
+}'
+```
+
 ---
 
 ## More
