@@ -33,3 +33,10 @@ async def get_gain(index: int, voicemeeter=Depends(get_voicemeeter_client)):
 async def get_mute(index: int, voicemeeter=Depends(get_voicemeeter_client)):
     """Get the current mute status for the specified bus index."""
     return {'mute': voicemeeter.bus[index].mute}
+
+
+@router.get('/{index}/mono', tags=['bus'])
+async def get_mono(index: int, voicemeeter=Depends(get_voicemeeter_client)):
+    """Get the current mono status for the specified bus index."""
+    opts = ['Off', 'On', 'Stereo Reverse']
+    return {'mono': opts[voicemeeter.bus[index].mono]}
