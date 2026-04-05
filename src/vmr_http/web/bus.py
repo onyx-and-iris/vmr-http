@@ -5,10 +5,11 @@ from fastapi import APIRouter, Depends
 from vmr_http.dependencies import get_voicemeeter_client
 from vmr_http.models.bus import BusParams
 
-from . import busmode
+from . import busmode, eq
 
 router = APIRouter()
 router.include_router(busmode.router, tags=['bus mode'])
+router.include_router(eq.router, tags=['bus eq'])
 
 
 @router.patch('/{index}', tags=['bus'])

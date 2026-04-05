@@ -5,12 +5,13 @@ from fastapi import APIRouter, Depends
 from vmr_http.dependencies import get_voicemeeter_client
 from vmr_http.models.strip import StripParams
 
-from . import stripcomp, stripdenoiser, stripgate
+from . import eq, stripcomp, stripdenoiser, stripgate
 
 router = APIRouter()
-router.include_router(stripcomp.router, prefix='/comp', tags=['strip comp'])
-router.include_router(stripgate.router, prefix='/gate', tags=['strip gate'])
-router.include_router(stripdenoiser.router, prefix='/denoiser', tags=['strip denoiser'])
+router.include_router(stripcomp.router, tags=['strip comp'])
+router.include_router(stripgate.router, tags=['strip gate'])
+router.include_router(stripdenoiser.router, tags=['strip denoiser'])
+router.include_router(eq.router, tags=['strip eq'])
 
 
 @router.patch('/{index}', tags=['strip'])
