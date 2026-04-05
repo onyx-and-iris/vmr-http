@@ -19,10 +19,10 @@ uvicorn vmr_http.app:app
 
 ## Use
 
-*Set multiple Strip parameters at once*
+*Set multiple Strip 0 parameters at once*
 
 ```console
-curl -X 'PUT' \
+curl -X 'PATCH' \
   'http://127.0.0.1:8000/strip/0' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
@@ -38,19 +38,19 @@ curl -X 'PUT' \
 }'
 ```
 
-*Set Strip mute*
+*Set Strip 1 mute*
 
 ```console
-curl -X 'PUT' \
-  'http://127.0.0.1:8000/strip/1/mute' \
+curl -X 'PATCH' \
+  'http://127.0.0.1:8000/strip/1' \
   -H 'accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{
-  "mute": true
+  "mute": true,
 }'
 ```
 
-*Get Bus gain*
+*Get Bus 3 gain*
 
 ```console
 curl -X 'GET' \
@@ -58,11 +58,11 @@ curl -X 'GET' \
   -H 'accept: application/json'
 ```
 
-*Get Bus Mode*
+*Get Bus 4 Mode*
 
 ```console
 curl -X 'GET' \
-  'http://127.0.0.1:8000/bus/mode/4' \
+  'http://127.0.0.1:8000/bus/4/mode' \
   -H 'accept: application/json'
 ```
 
