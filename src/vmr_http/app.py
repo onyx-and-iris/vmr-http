@@ -35,7 +35,7 @@ app.include_router(bus.router, prefix='/bus')
 def health_check(voicemeeter=Depends(get_voicemeeter_client)):
     """Health check endpoint to verify the service is running."""
     try:
-        version = voicemeeter.version  # Check if we can communicate with Voicemeeter
+        version = voicemeeter.version
         type_ = voicemeeter.type
     except CAPIError as e:
         raise HTTPException(status_code=503, detail=f'Voicemeeter API error: {str(e)}')
