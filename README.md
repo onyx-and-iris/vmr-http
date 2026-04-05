@@ -66,6 +66,14 @@ curl -X 'GET' \
   -H 'accept: application/json'
 ```
 
+*Healthcheck*
+
+```console
+curl -X 'GET' \
+  'http://127.0.0.1:8000/health' \
+  -H 'accept: application/json'
+```
+
 ## Documentation
 
 FastAPI [generates automatic docs][auto-docs], visit the link in the startup message when you launch the server.
