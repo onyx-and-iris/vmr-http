@@ -25,3 +25,45 @@ async def get_strip_gate_knob(index: int, voicemeeter=Depends(get_voicemeeter_cl
     """Get the current gate knob value for the specified strip index."""
     strip_gate = voicemeeter.strip[index].gate
     return {'knob': strip_gate.knob}
+
+
+@router.get('/threshold')
+async def get_strip_gate_threshold(index: int, voicemeeter=Depends(get_voicemeeter_client)):
+    """Get the current gate threshold value for the specified strip index."""
+    strip_gate = voicemeeter.strip[index].gate
+    return {'threshold': strip_gate.threshold}
+
+
+@router.get('/damping')
+async def get_strip_gate_damping(index: int, voicemeeter=Depends(get_voicemeeter_client)):
+    """Get the current gate damping value for the specified strip index."""
+    strip_gate = voicemeeter.strip[index].gate
+    return {'damping': strip_gate.damping}
+
+
+@router.get('/bpsidechain')
+async def get_strip_gate_bpsidechain(index: int, voicemeeter=Depends(get_voicemeeter_client)):
+    """Get the current gate sidechain value for the specified strip index."""
+    strip_gate = voicemeeter.strip[index].gate
+    return {'bpsidechain': strip_gate.bpsidechain}
+
+
+@router.get('/attack')
+async def get_strip_gate_attack(index: int, voicemeeter=Depends(get_voicemeeter_client)):
+    """Get the current gate attack value for the specified strip index."""
+    strip_gate = voicemeeter.strip[index].gate
+    return {'attack': strip_gate.attack}
+
+
+@router.get('/hold')
+async def get_strip_gate_hold(index: int, voicemeeter=Depends(get_voicemeeter_client)):
+    """Get the current gate hold value for the specified strip index."""
+    strip_gate = voicemeeter.strip[index].gate
+    return {'hold': strip_gate.hold}
+
+
+@router.get('/release')
+async def get_strip_gate_release(index: int, voicemeeter=Depends(get_voicemeeter_client)):
+    """Get the current gate release value for the specified strip index."""
+    strip_gate = voicemeeter.strip[index].gate
+    return {'release': strip_gate.release}
