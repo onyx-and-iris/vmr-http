@@ -1,4 +1,4 @@
-# API Usage Examples
+# API Usage
 
 ## Prerequisites
 
@@ -62,6 +62,32 @@ curl -X 'PATCH' \
 }'
 ```
 
+## Strip Gate Router
+
+### */strip/{index}/gate*
+
+> Get single parameter
+
+```console
+curl -X 'GET' \
+  'http://127.0.0.1:8000/strip/0/gate/knob' \
+  -H 'accept: application/json'
+```
+
+> Set multiple parameters
+
+```console
+curl -X 'PATCH' \
+  'http://127.0.0.1:8000/strip/0/gate' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "threshold": -28.7,
+  "damping": -60,
+  "attack": 2
+}'
+```
+
 ---
 
 ## Bus Router
@@ -72,7 +98,7 @@ curl -X 'PATCH' \
 
 ```console
 curl -X 'GET' \
-  'http://127.0.0.1:8000/bus/1/mono' \
+  'http://127.0.0.1:8000/bus/0/mono' \
   -H 'accept: application/json'
 ```
 

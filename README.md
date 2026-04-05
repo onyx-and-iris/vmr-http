@@ -19,7 +19,9 @@ uvicorn vmr_http:app
 
 ## Documentation
 
-FastAPI generates [automatic docs][auto-docs], simply launch the server and then visit:
+For a few examples see [./API_EXAMPLES.md].
+
+For an exhaustive list of the endpoints FastAPI generates [automatic docs][auto-docs], simply launch the server and then visit:
 
 *Swagger UI*
 - http://localhost:8000/docs
