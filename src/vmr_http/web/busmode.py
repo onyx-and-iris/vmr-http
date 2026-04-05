@@ -1,6 +1,6 @@
 """module for bus mode related endpoints."""
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Body, Depends, HTTPException
 
 from vmr_http.dependencies import get_voicemeeter_client
 
@@ -25,7 +25,7 @@ _reversed_busmodes = {v: k for k, v in _readable_busmodes.items()}
 
 @router.patch('/{index}/mode')
 @router.put('/{index}/mode')
-async def update_bus_mode(index: int, mode: str, voicemeeter=Depends(get_voicemeeter_client)):
+async def update_bus_mode(index: int, mode: str = Body(..., embed=True), voicemeeter=Depends(get_voicemeeter_client)):
     """Update the bus mode for the specified bus index."""
     if mode not in _reversed_busmodes:
         raise HTTPException(

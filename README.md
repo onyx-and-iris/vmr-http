@@ -66,6 +66,18 @@ curl -X 'GET' \
   -H 'accept: application/json'
 ```
 
+*Set Bus 2 Mode*
+
+```console
+curl -X 'PATCH' \
+  'http://127.0.0.1:8000/bus/2/mode' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "mode": "Composite"
+}'
+```
+
 *Healthcheck*
 
 ```console
