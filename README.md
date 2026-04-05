@@ -19,7 +19,7 @@ uvicorn vmr_http:app
 
 ## Documentation
 
-For a few examples see [./API_EXAMPLES.md].
+For a few examples see [API_EXAMPLES](./API_EXAMPLES.md).
 
 For an exhaustive list of the endpoints FastAPI generates [automatic docs][auto-docs], simply launch the server and then visit:
 
