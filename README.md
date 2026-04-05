@@ -31,6 +31,6 @@ FastAPI generates [automatic docs][auto-docs], simply launch the server and then
 
 ## License
 
-`vban-cli` is distributed under the terms of the [MIT](https://spdx.org/licenses/MIT.html) license.
+`vmr-http` is distributed under the terms of the [MIT](https://spdx.org/licenses/MIT.html) license.
 
 [auto-docs]: https://fastapi.tiangolo.com/features/#automatic-docs
