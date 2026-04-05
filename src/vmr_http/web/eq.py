@@ -8,8 +8,8 @@ from vmr_http.models.eq import EQChannelCellParams
 cell_router = APIRouter()
 
 
-@cell_router.patch('/{cell_index}')
-@cell_router.put('/{cell_index}')
+@cell_router.patch('')
+@cell_router.put('')
 async def update_strip_eq_channel_cell_params(
     index: int,
     channel_index: int,
@@ -26,7 +26,7 @@ async def update_strip_eq_channel_cell_params(
     return updated
 
 
-@cell_router.get('/{cell_index}/on')
+@cell_router.get('/on')
 async def get_strip_eq_channel_cell_on(
     index: int, channel_index: int, cell_index: int, voicemeeter=Depends(get_voicemeeter_client)
 ):
@@ -34,7 +34,7 @@ async def get_strip_eq_channel_cell_on(
     return {'on': voicemeeter.strip[index].eq.channel[channel_index].cell[cell_index].on}
 
 
-@cell_router.get('/{cell_index}/type')
+@cell_router.get('/type')
 async def get_strip_eq_channel_cell_type(
     index: int, channel_index: int, cell_index: int, voicemeeter=Depends(get_voicemeeter_client)
 ):
@@ -42,7 +42,7 @@ async def get_strip_eq_channel_cell_type(
     return {'type': voicemeeter.strip[index].eq.channel[channel_index].cell[cell_index].type}
 
 
-@cell_router.get('/{cell_index}/f')
+@cell_router.get('/f')
 async def get_strip_eq_channel_cell_f(
     index: int, channel_index: int, cell_index: int, voicemeeter=Depends(get_voicemeeter_client)
 ):
@@ -50,7 +50,7 @@ async def get_strip_eq_channel_cell_f(
     return {'f': voicemeeter.strip[index].eq.channel[channel_index].cell[cell_index].f}
 
 
-@cell_router.get('/{cell_index}/gain')
+@cell_router.get('/gain')
 async def get_strip_eq_channel_cell_gain(
     index: int, channel_index: int, cell_index: int, voicemeeter=Depends(get_voicemeeter_client)
 ):
@@ -58,7 +58,7 @@ async def get_strip_eq_channel_cell_gain(
     return {'gain': voicemeeter.strip[index].eq.channel[channel_index].cell[cell_index].gain}
 
 
-@cell_router.get('/{cell_index}/q')
+@cell_router.get('/q')
 async def get_strip_eq_channel_cell_q(
     index: int, channel_index: int, cell_index: int, voicemeeter=Depends(get_voicemeeter_client)
 ):
@@ -67,11 +67,11 @@ async def get_strip_eq_channel_cell_q(
 
 
 router = APIRouter()
-router.include_router(cell_router, prefix='/{index}/eq/channel/{channel_index}/cell')
+router.include_router(cell_router, prefix='/channel/{channel_index}/cell/{cell_index}')
 
 
-@router.patch('/{index}/eq')
-@router.put('/{index}/eq')
+@router.patch('')
+@router.put('')
 async def update_strip_eq_params(
     index: int, on: bool = Body(..., embed=True), voicemeeter=Depends(get_voicemeeter_client)
 ):
@@ -81,7 +81,7 @@ async def update_strip_eq_params(
     return {'on': strip_eq.on}
 
 
-@router.get('/{index}/eq/on')
+@router.get('/on')
 async def get_strip_eq_on(index: int, voicemeeter=Depends(get_voicemeeter_client)):
     """Get the current equalizer on status for the specified strip index."""
     return {'on': voicemeeter.strip[index].eq.on}

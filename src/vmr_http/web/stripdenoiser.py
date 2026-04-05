@@ -8,8 +8,8 @@ from vmr_http.models.strip import StripDenoiserParams
 router = APIRouter()
 
 
-@router.patch('/{index}/denoiser')
-@router.put('/{index}/denoiser')
+@router.patch('')
+@router.put('')
 async def update_strip_denoiser_params(
     index: int, params: StripDenoiserParams, voicemeeter=Depends(get_voicemeeter_client)
 ):
@@ -22,7 +22,7 @@ async def update_strip_denoiser_params(
     return updated
 
 
-@router.get('/{index}/denoiser/knob')
+@router.get('/knob')
 async def get_strip_denoiser_knob(
     index: int,
     voicemeeter=Depends(get_voicemeeter_client),

@@ -8,8 +8,8 @@ from vmr_http.models.strip import StripGateParams
 router = APIRouter()
 
 
-@router.patch('/{index}/gate')
-@router.put('/{index}/gate')
+@router.patch('')
+@router.put('')
 async def update_strip_gate_params(index: int, params: StripGateParams, voicemeeter=Depends(get_voicemeeter_client)):
     """Update one or more gate parameters for the specified strip index."""
     strip_gate = voicemeeter.strip[index].gate
@@ -20,7 +20,7 @@ async def update_strip_gate_params(index: int, params: StripGateParams, voicemee
     return updated
 
 
-@router.get('/{index}/gate/knob')
+@router.get('/knob')
 async def get_strip_gate_knob(index: int, voicemeeter=Depends(get_voicemeeter_client)):
     """Get the current gate knob value for the specified strip index."""
     strip_gate = voicemeeter.strip[index].gate

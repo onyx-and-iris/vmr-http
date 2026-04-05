@@ -8,8 +8,8 @@ from vmr_http.models.strip import StripCompParams
 router = APIRouter()
 
 
-@router.patch('/{index}/comp')
-@router.put('/{index}/comp')
+@router.patch('')
+@router.put('')
 async def update_strip_comp_params(index: int, params: StripCompParams, voicemeeter=Depends(get_voicemeeter_client)):
     """Update one or more compressor parameters for the specified strip index."""
     strip_comp = voicemeeter.strip[index].comp
@@ -20,7 +20,7 @@ async def update_strip_comp_params(index: int, params: StripCompParams, voicemee
     return updated
 
 
-@router.get('/{index}/comp/knob')
+@router.get('/knob')
 async def get_strip_comp_knob(index: int, voicemeeter=Depends(get_voicemeeter_client)):
     """Get the current compressor knob value for the specified strip index."""
     strip_comp = voicemeeter.strip[index].comp

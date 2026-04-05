@@ -27,8 +27,8 @@ app = FastAPI(
         {'name': 'bus', 'description': 'Endpoints for controlling bus parameters.'},
     ],
 )
-app.include_router(strip.router, prefix='/strip')
-app.include_router(bus.router, prefix='/bus')
+app.include_router(strip.router, prefix='/strip/{index}')
+app.include_router(bus.router, prefix='/bus/{index}')
 
 
 @app.get('/health')
