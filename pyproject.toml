@@ -1,15 +1,11 @@
 [project]
 name = "vmr-http"
-version = "0.3.0"
+version = "0.3.1"
 description = "HTTP API for controlling Voicemeeter"
 readme = "README.md"
 authors = [{ name = "onyx-and-iris", email = "code@onyxandiris.online" }]
 requires-python = ">=3.10"
-dependencies = [
-    "fastapi>=0.135.3",
-    "uvicorn>=0.43.0",
-    "voicemeeter-api>=2.7.2",
-]
+dependencies = ["fastapi>=0.135.3", "uvicorn>=0.43.0", "voicemeeter-api>=2.7.2"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Programming Language :: Python",
@@ -26,14 +22,10 @@ requires = ["uv_build>=0.11.3,<0.12.0"]
 build-backend = "uv_build"
 
 [dependency-groups]
-dev = [
-    "fastapi[standard]>=0.135.3",
-    "poethepoet>=0.43.0",
-    "ruff>=0.15.9",
-]
+dev = ["fastapi[standard]>=0.135.3", "poethepoet>=0.43.0", "ruff>=0.15.9"]
 
 [tool.fastapi]
-entrypoint = "vmr_http.app:app"
+entrypoint = "vmr_http:app"
 
 [tool.uv.sources]
 voicemeeter-api = { path = "../voicemeeter-api-python", editable = true }

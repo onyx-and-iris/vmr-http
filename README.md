@@ -14,7 +14,7 @@ pip install vmr-http
 ## Run
 
 ```console
-uvicorn vmr_http.app:app
+uvicorn vmr_http:app
 ```
 
 ## Use
