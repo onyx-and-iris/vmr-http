@@ -4,11 +4,12 @@ from fastapi import APIRouter, Depends
 
 from vmr_http.dependencies import get_voicemeeter_client
 from vmr_http.models.bus import BusParams
+from vmr_http.web import eq
 
-from . import busmode, eq
+from . import mode
 
 router = APIRouter()
-router.include_router(busmode.router, prefix='/mode', tags=['bus mode'])
+router.include_router(mode.router, prefix='/mode', tags=['bus mode'])
 router.include_router(eq.create_router(eq_kind='bus'), prefix='/eq', tags=['bus eq'])
 
 

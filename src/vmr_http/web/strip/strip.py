@@ -4,13 +4,15 @@ from fastapi import APIRouter, Depends
 
 from vmr_http.dependencies import get_voicemeeter_client
 from vmr_http.models.strip import StripParams
+from vmr_http.web import eq
 
-from . import eq, stripcomp, stripdenoiser, stripgate
+from . import comp, denoiser, gainlayer, gate
 
 router = APIRouter()
-router.include_router(stripcomp.router, prefix='/comp', tags=['strip comp'])
-router.include_router(stripgate.router, prefix='/gate', tags=['strip gate'])
-router.include_router(stripdenoiser.router, prefix='/denoiser', tags=['strip denoiser'])
+router.include_router(gainlayer.router, prefix='/gainlayer/{gainlayer_index}', tags=['strip gainlayer'])
+router.include_router(comp.router, prefix='/comp', tags=['strip comp'])
+router.include_router(gate.router, prefix='/gate', tags=['strip gate'])
+router.include_router(denoiser.router, prefix='/denoiser', tags=['strip denoiser'])
 router.include_router(eq.create_router(eq_kind='strip'), prefix='/eq', tags=['strip eq'])
 
 
