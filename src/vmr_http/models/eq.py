@@ -5,6 +5,13 @@ from typing import Optional
 from pydantic import BaseModel
 
 
+class EQParams(BaseModel):
+    """Parameters for an equalizer."""
+
+    on: Optional[bool] = None
+    ab: Optional[bool] = None
+
+
 class EQChannelCellParams(BaseModel):
     """Parameters for an equalizer channel."""
 

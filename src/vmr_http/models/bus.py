@@ -11,4 +11,3 @@ class BusParams(BaseModel):
     gain: Optional[float] = None
     mute: Optional[bool] = None
     mono: Optional[int] = None
-    eq: Optional[bool] = None
