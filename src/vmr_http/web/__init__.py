@@ -1,5 +1,5 @@
 """API endpoints for controlling various Voicemeeter components."""
 
-from . import bus, strip
+from . import bus, command, strip
 
-__all__ = ['bus', 'strip']
+__all__ = ['bus', 'command', 'strip']

@@ -7,7 +7,7 @@ from fastapi import Depends, FastAPI, HTTPException
 from voicemeeterlib.error import CAPIError
 
 from .dependencies import get_voicemeeter_client
-from .web import bus, strip
+from .web import bus, command, strip
 
 
 @asynccontextmanager
@@ -29,6 +29,7 @@ app = FastAPI(
 )
 app.include_router(strip.router, prefix='/strip/{index}')
 app.include_router(bus.router, prefix='/bus/{index}')
+app.include_router(command.router, prefix='/command')
 
 
 @app.get('/health')
