@@ -15,42 +15,42 @@ router = APIRouter(tags=['command'])
 
 
 @router.post('/show')
-async def show_command(voicemeeter=Depends(get_voicemeeter_client)):
+def show_command(voicemeeter=Depends(get_voicemeeter_client)):
     """Show the Voicemeeter application."""
     voicemeeter.command.show()
     return {'status': 'Voicemeeter shown'}
 
 
 @router.post('/hide')
-async def hide_command(voicemeeter=Depends(get_voicemeeter_client)):
+def hide_command(voicemeeter=Depends(get_voicemeeter_client)):
     """Hide the Voicemeeter application."""
     voicemeeter.command.hide()
     return {'status': 'Voicemeeter hidden'}
 
 
 @router.post('/shutdown')
-async def shutdown_command(voicemeeter=Depends(get_voicemeeter_client)):
+def shutdown_command(voicemeeter=Depends(get_voicemeeter_client)):
     """Shutdown the Voicemeeter application."""
     voicemeeter.command.shutdown()
     return {'status': 'Voicemeeter shutdown'}
 
 
 @router.post('/restart')
-async def restart_command(voicemeeter=Depends(get_voicemeeter_client)):
+def restart_command(voicemeeter=Depends(get_voicemeeter_client)):
     """Restart the Voicemeeter application."""
     voicemeeter.command.restart()
     return {'status': 'Voicemeeter restarted'}
 
 
 @router.post('/lock')
-async def lock_command(voicemeeter=Depends(get_voicemeeter_client)):
+def lock_command(voicemeeter=Depends(get_voicemeeter_client)):
     """Lock the Voicemeeter application."""
     voicemeeter.command.lock = True
     return {'status': 'Voicemeeter locked'}
 
 
 @router.post('/unlock')
-async def unlock_command(voicemeeter=Depends(get_voicemeeter_client)):
+def unlock_command(voicemeeter=Depends(get_voicemeeter_client)):
     """Unlock the Voicemeeter application."""
     voicemeeter.command.lock = False
     return {'status': 'Voicemeeter unlocked'}
