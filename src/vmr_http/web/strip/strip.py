@@ -18,7 +18,7 @@ router.include_router(eq.create_router(eq_kind='strip'), prefix='/eq', tags=['st
 
 @router.patch('', tags=['strip'])
 @router.put('', tags=['strip'])
-async def update_strip_params(index: int, params: StripParams, voicemeeter=Depends(get_voicemeeter_client)):
+def update_strip_params(index: int, params: StripParams, voicemeeter=Depends(get_voicemeeter_client)):
     """Update one or more parameters for the specified strip index."""
     strip = voicemeeter.strip[index]
     updated = {}
@@ -29,72 +29,72 @@ async def update_strip_params(index: int, params: StripParams, voicemeeter=Depen
 
 
 @router.get('/gain', tags=['strip'])
-async def get_gain(index: int, voicemeeter=Depends(get_voicemeeter_client)):
+def get_gain(index: int, voicemeeter=Depends(get_voicemeeter_client)):
     """Get the current gain value for the specified strip index."""
     return {'gain': voicemeeter.strip[index].gain}
 
 
 @router.get('/mute', tags=['strip'])
-async def get_mute(index: int, voicemeeter=Depends(get_voicemeeter_client)):
+def get_mute(index: int, voicemeeter=Depends(get_voicemeeter_client)):
     """Get the current mute status for the specified strip index."""
     return {'mute': voicemeeter.strip[index].mute}
 
 
 @router.get('/mono', tags=['strip'])
-async def get_mono(index: int, voicemeeter=Depends(get_voicemeeter_client)):
+def get_mono(index: int, voicemeeter=Depends(get_voicemeeter_client)):
     """Get the current mono status for the specified strip index."""
     return {'mono': voicemeeter.strip[index].mono}
 
 
 @router.get('/solo', tags=['strip'])
-async def get_solo(index: int, voicemeeter=Depends(get_voicemeeter_client)):
+def get_solo(index: int, voicemeeter=Depends(get_voicemeeter_client)):
     """Get the current solo status for the specified strip index."""
     return {'solo': voicemeeter.strip[index].solo}
 
 
 @router.get('/A1', tags=['strip'])
-async def get_A1(index: int, voicemeeter=Depends(get_voicemeeter_client)):
+def get_A1(index: int, voicemeeter=Depends(get_voicemeeter_client)):
     """Get the current A1 output status for the specified strip index."""
     return {'A1': voicemeeter.strip[index].A1}
 
 
 @router.get('/A2', tags=['strip'])
-async def get_A2(index: int, voicemeeter=Depends(get_voicemeeter_client)):
+def get_A2(index: int, voicemeeter=Depends(get_voicemeeter_client)):
     """Get the current A2 output status for the specified strip index."""
     return {'A2': voicemeeter.strip[index].A2}
 
 
 @router.get('/A3', tags=['strip'])
-async def get_A3(index: int, voicemeeter=Depends(get_voicemeeter_client)):
+def get_A3(index: int, voicemeeter=Depends(get_voicemeeter_client)):
     """Get the current A3 output status for the specified strip index."""
     return {'A3': voicemeeter.strip[index].A3}
 
 
 @router.get('/A4', tags=['strip'])
-async def get_A4(index: int, voicemeeter=Depends(get_voicemeeter_client)):
+def get_A4(index: int, voicemeeter=Depends(get_voicemeeter_client)):
     """Get the current A4 output status for the specified strip index."""
     return {'A4': voicemeeter.strip[index].A4}
 
 
 @router.get('/A5', tags=['strip'])
-async def get_A5(index: int, voicemeeter=Depends(get_voicemeeter_client)):
+def get_A5(index: int, voicemeeter=Depends(get_voicemeeter_client)):
     """Get the current A5 output status for the specified strip index."""
     return {'A5': voicemeeter.strip[index].A5}
 
 
 @router.get('/B1', tags=['strip'])
-async def get_B1(index: int, voicemeeter=Depends(get_voicemeeter_client)):
+def get_B1(index: int, voicemeeter=Depends(get_voicemeeter_client)):
     """Get the current B1 output status for the specified strip index."""
     return {'B1': voicemeeter.strip[index].B1}
 
 
 @router.get('/B2', tags=['strip'])
-async def get_B2(index: int, voicemeeter=Depends(get_voicemeeter_client)):
+def get_B2(index: int, voicemeeter=Depends(get_voicemeeter_client)):
     """Get the current B2 output status for the specified strip index."""
     return {'B2': voicemeeter.strip[index].B2}
 
 
 @router.get('/B3', tags=['strip'])
-async def get_B3(index: int, voicemeeter=Depends(get_voicemeeter_client)):
+def get_B3(index: int, voicemeeter=Depends(get_voicemeeter_client)):
     """Get the current B3 output status for the specified strip index."""
     return {'B3': voicemeeter.strip[index].B3}

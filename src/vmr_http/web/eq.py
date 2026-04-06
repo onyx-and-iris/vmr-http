@@ -21,7 +21,7 @@ def create_router(eq_kind: str) -> APIRouter:
 
     @cell_router.patch('')
     @cell_router.put('')
-    async def update_eq_channel_cell_params(
+    def update_eq_channel_cell_params(
         index: int,
         channel_index: int,
         cell_index: int,
@@ -37,35 +37,35 @@ def create_router(eq_kind: str) -> APIRouter:
         return updated
 
     @cell_router.get('/on')
-    async def get_eq_channel_cell_on(
+    def get_eq_channel_cell_on(
         index: int, channel_index: int, cell_index: int, voicemeeter=Depends(get_voicemeeter_client)
     ):
         """Get the current on status for the specified eq channel cell."""
         return {'on': target_cls(voicemeeter, index).eq.channel[channel_index].cell[cell_index].on}
 
     @cell_router.get('/type')
-    async def get_eq_channel_cell_type(
+    def get_eq_channel_cell_type(
         index: int, channel_index: int, cell_index: int, voicemeeter=Depends(get_voicemeeter_client)
     ):
         """Get the current type for the specified eq channel cell."""
         return {'type': target_cls(voicemeeter, index).eq.channel[channel_index].cell[cell_index].type}
 
     @cell_router.get('/f')
-    async def get_eq_channel_cell_f(
+    def get_eq_channel_cell_f(
         index: int, channel_index: int, cell_index: int, voicemeeter=Depends(get_voicemeeter_client)
     ):
         """Get the current f value for the specified eq channel cell."""
         return {'f': target_cls(voicemeeter, index).eq.channel[channel_index].cell[cell_index].f}
 
     @cell_router.get('/gain')
-    async def get_eq_channel_cell_gain(
+    def get_eq_channel_cell_gain(
         index: int, channel_index: int, cell_index: int, voicemeeter=Depends(get_voicemeeter_client)
     ):
         """Get the current gain value for the specified eq channel cell."""
         return {'gain': target_cls(voicemeeter, index).eq.channel[channel_index].cell[cell_index].gain}
 
     @cell_router.get('/q')
-    async def get_eq_channel_cell_q(
+    def get_eq_channel_cell_q(
         index: int, channel_index: int, cell_index: int, voicemeeter=Depends(get_voicemeeter_client)
     ):
         """Get the current q value for the specified eq channel cell."""
@@ -76,7 +76,7 @@ def create_router(eq_kind: str) -> APIRouter:
 
     @router.patch('')
     @router.put('')
-    async def update_eq_params(index: int, params: EQParams, voicemeeter=Depends(get_voicemeeter_client)):
+    def update_eq_params(index: int, params: EQParams, voicemeeter=Depends(get_voicemeeter_client)):
         """Update one or more equalizer parameters for the specified index."""
         eq = target_cls(voicemeeter, index).eq
         updated = {}
@@ -86,12 +86,12 @@ def create_router(eq_kind: str) -> APIRouter:
         return updated
 
     @router.get('/on')
-    async def get_eq_on(index: int, voicemeeter=Depends(get_voicemeeter_client)):
+    def get_eq_on(index: int, voicemeeter=Depends(get_voicemeeter_client)):
         """Get the current equalizer on status for the specified index."""
         return {'on': target_cls(voicemeeter, index).eq.on}
 
     @router.get('/ab')
-    async def get_eq_ab(index: int, voicemeeter=Depends(get_voicemeeter_client)):
+    def get_eq_ab(index: int, voicemeeter=Depends(get_voicemeeter_client)):
         """Get the current equalizer A/B status for the specified index."""
         return {'ab': target_cls(voicemeeter, index).eq.ab}
 

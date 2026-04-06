@@ -25,7 +25,7 @@ _reversed_busmodes = {v: k for k, v in _readable_busmodes.items()}
 
 @router.patch('')
 @router.put('')
-async def update_bus_mode(index: int, mode: str = Body(..., embed=True), voicemeeter=Depends(get_voicemeeter_client)):
+def update_bus_mode(index: int, mode: str = Body(..., embed=True), voicemeeter=Depends(get_voicemeeter_client)):
     """Update the bus mode for the specified bus index."""
     if mode not in _reversed_busmodes:
         raise HTTPException(
@@ -36,6 +36,6 @@ async def update_bus_mode(index: int, mode: str = Body(..., embed=True), voiceme
 
 
 @router.get('')
-async def get_bus_mode(index: int, voicemeeter=Depends(get_voicemeeter_client)):
+def get_bus_mode(index: int, voicemeeter=Depends(get_voicemeeter_client)):
     """Get the current bus mode for the specified bus index."""
     return {'mode': _readable_busmodes.get(voicemeeter.bus[index].mode.get(), 'Unknown')}

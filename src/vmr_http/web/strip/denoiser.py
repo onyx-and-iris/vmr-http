@@ -10,9 +10,7 @@ router = APIRouter()
 
 @router.patch('')
 @router.put('')
-async def update_strip_denoiser_params(
-    index: int, params: StripDenoiserParams, voicemeeter=Depends(get_voicemeeter_client)
-):
+def update_strip_denoiser_params(index: int, params: StripDenoiserParams, voicemeeter=Depends(get_voicemeeter_client)):
     """Update one or more denoiser parameters for the specified strip index."""
     strip_denoiser = voicemeeter.strip[index].denoiser
     updated = {}
@@ -23,7 +21,7 @@ async def update_strip_denoiser_params(
 
 
 @router.get('/knob')
-async def get_strip_denoiser_knob(
+def get_strip_denoiser_knob(
     index: int,
     voicemeeter=Depends(get_voicemeeter_client),
 ):
