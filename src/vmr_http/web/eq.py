@@ -77,7 +77,7 @@ def create_router(eq_kind: str) -> APIRouter:
     @router.patch('')
     @router.put('')
     def update_eq_params(index: int, params: EQParams, voicemeeter=Depends(get_voicemeeter_client)):
-        """Update one or more equalizer parameters for the specified index."""
+        """Update one or more equalizer parameters for the specified channel index (strip or bus)."""
         eq = target_cls(voicemeeter, index).eq
         updated = {}
         for key, value in params.model_dump(exclude_unset=True).items():
@@ -87,12 +87,12 @@ def create_router(eq_kind: str) -> APIRouter:
 
     @router.get('/on')
     def get_eq_on(index: int, voicemeeter=Depends(get_voicemeeter_client)):
-        """Get the current equalizer on status for the specified index."""
+        """Get the current equalizer on status for the specified channel index (strip or bus)."""
         return {'on': target_cls(voicemeeter, index).eq.on}
 
     @router.get('/ab')
     def get_eq_ab(index: int, voicemeeter=Depends(get_voicemeeter_client)):
-        """Get the current equalizer A/B status for the specified index."""
+        """Get the current equalizer A/B status for the specified channel index (strip or bus)."""
         return {'ab': target_cls(voicemeeter, index).eq.ab}
 
     return router

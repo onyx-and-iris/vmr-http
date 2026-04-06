@@ -37,7 +37,7 @@ def shutdown_command(voicemeeter=Depends(get_voicemeeter_client)):
 
 @router.post('/restart')
 def restart_command(voicemeeter=Depends(get_voicemeeter_client)):
-    """Restart the Voicemeeter application."""
+    """Restart the Voicemeeter engine."""
     voicemeeter.command.restart()
     return {'status': 'Voicemeeter restarted'}
 
